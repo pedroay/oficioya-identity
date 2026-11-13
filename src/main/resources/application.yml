@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: oficioya
+  datasource:
+    # Valores por defecto SOLO para desarrollo local (docker-compose.yml).
+    # En cualquier otro ambiente se sobrescriben con variables de entorno.
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/oficioya}
+    username: ${DB_USER:oficioya}
+    password: ${DB_PASSWORD:oficioya}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # El esquema lo crea Flyway; Hibernate solo valida que las entidades coincidan.
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${PORT:8081}
+
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    eci.edu.dosw: INFO
+
+
+jwt:
+  # Sin valor por defecto: si falta JWT_SECRET la app no arranca (falla rapido).
+  # En desarrollo local el secreto sale de application-local.yml.
+  secret: ${JWT_SECRET}
+  expiration:
+    ms: 900000
