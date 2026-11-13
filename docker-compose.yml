@@ -1,0 +1,16 @@
+# Base de datos local para desarrollo: docker compose up -d
+services:
+  postgres:
+    image: postgres:16
+    container_name: oficioya-postgres
+    environment:
+      POSTGRES_DB: oficioya
+      POSTGRES_USER: oficioya
+      POSTGRES_PASSWORD: oficioya
+    ports:
+      - "5432:5432"
+    volumes:
+      - oficioya-data:/var/lib/postgresql/data
+
+volumes:
+  oficioya-data:
