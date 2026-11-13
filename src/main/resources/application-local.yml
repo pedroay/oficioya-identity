@@ -1,0 +1,20 @@
+# Configuracion SOLO para desarrollo local (perfil "local").
+# Este secreto es publico (esta en el repositorio): nunca se usa fuera de local.
+# Es el mismo que usa el orquestador en su perfil local, para que validen los mismos tokens.
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:identity;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+jwt:
+  secret: ittFuD1AgrBmd01gZC5U1sO+Ube03p4RRhx6mFsSzbxvvgGIvSkHbCgL3vhrlmD4
